@@ -1,7 +1,19 @@
+import { createContext, useState } from "react";
 import "./App.css";
+import HomePage from "./pages/Home";
+
+export const appContext = createContext([]);
 
 function App() {
-  return <h1 className="text-center">App</h1>;
+  const [cart, setCart] = useState([]);
+
+  return (
+    <>
+      <appContext.Provider value={cart}>
+        <HomePage />
+      </appContext.Provider>
+    </>
+  );
 }
 
 export default App;
