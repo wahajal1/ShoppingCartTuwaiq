@@ -22,7 +22,7 @@ function Cart() {
               </tr>
             </thead>
             <tbody>
-              {cart.map((element) => {
+              {cart?.map((element) => {
                 return (
                   <tr key={element.id}>
                     <th>{element.id}</th>

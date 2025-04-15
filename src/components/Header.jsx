@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
+import { Context } from "../context/cartContext";
 
 function Header({ children }) {
+  const { cart } = useContext(Context);
+
   const NavLinks = [
     {
       title: "Home",
@@ -24,9 +27,10 @@ function Header({ children }) {
       url: "/user",
     },
   ];
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to={"/"}>
             Shopping Cart App
@@ -52,7 +56,9 @@ function Header({ children }) {
                       aria-current="page"
                       to={item.url}
                     >
-                      {item.title}
+                      {item.title === "Cart"
+                        ? `${item.title}(${cart.length})`
+                        : item.title}
                     </Link>
                   </li>
                 );

@@ -1,13 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { useNavigate } from "react-router";
+import { Bounce, toast } from "react-toastify";
 
 function Login() {
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const notify = () =>
+    toast("Login Success!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
+
+  const handleFrom = (e) => {
+    e.preventDefault();
+
+    if (email === "m@m.com" && password === "123") {
+      notify();
+      navigate("/dashboard");
+    } else {
+      console.log("Login failed!!!");
+      return;
+    }
+    // send data to backend;
+  };
+
   return (
     <>
       <div className="content">
         <div className="card-container">
           <div className="card mt-5 card-style">
             <h1 className="text-center">Login </h1>
-            <form>
+            <form onSubmit={handleFrom}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   Email address
@@ -17,6 +51,10 @@ function Login() {
                   className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
                 <div id="emailHelp" className="form-text">
                   We'll never share your email with anyone else.
@@ -30,6 +68,10 @@ function Login() {
                   type="password"
                   className="form-control"
                   id="exampleInputPassword1"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </div>
               <button type="submit" className="btn btn-primary">

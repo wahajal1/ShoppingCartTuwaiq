@@ -6,6 +6,7 @@ import DashBoard from "./pages/Dashboard.jsx";
 import User from "./pages/User.jsx";
 import "./App.css";
 import Login from "./pages/Login.jsx";
+import { Bounce, ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -17,6 +18,19 @@ function App() {
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/login" element={<Login />}></Route>
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </>
   );
 }
