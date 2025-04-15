@@ -1,17 +1,22 @@
-import { createContext, useState } from "react";
-import "./App.css";
-import HomePage from "./pages/Home";
+import { Route, Routes } from "react-router";
 
-export const appContext = createContext([]);
+import HomePage from "./pages/Home";
+import Cart from "./pages/Cart";
+import DashBoard from "./pages/Dashboard.jsx";
+import User from "./pages/User.jsx";
+import "./App.css";
+import Login from "./pages/Login.jsx";
 
 function App() {
-  const [cart, setCart] = useState([]);
-
   return (
     <>
-      <appContext.Provider value={cart}>
-        <HomePage />
-      </appContext.Provider>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/dashboard" element={<DashBoard />}></Route>
+        <Route path="/user" element={<User />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+      </Routes>
     </>
   );
 }
