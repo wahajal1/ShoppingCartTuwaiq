@@ -12,6 +12,10 @@ function Header({ children }) {
       url: "/products",
     },
     {
+      title: "Cart",
+      url: "/cart",
+    },
+    {
       title: "Dashboard",
       url: "/dashboard",
     },

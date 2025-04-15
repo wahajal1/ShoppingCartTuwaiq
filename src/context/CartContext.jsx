@@ -6,7 +6,29 @@ function CartContext({ children }) {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
-    setCart((prev) => [...prev, product]);
+    const isExiting = cart.find((item) => item.id === product.id);
+    //if product Already exist
+    if (isExiting) {
+      setCart(
+        cart.map((cartItem) => {
+          return cartItem.id === product.id // cartItem = Product
+            ? {
+                ...cartItem,
+                quantity: cartItem.quantity + 1,
+              }
+            : cartItem;
+        })
+      );
+    } else {
+      setCart([
+        ...cart,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]);
+    }
+    console.log(cart);
   };
 
   //remove from cart
