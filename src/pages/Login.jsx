@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useNavigate } from "react-router";
 import { Bounce, toast } from "react-toastify";
@@ -8,6 +8,8 @@ function Login() {
 
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const el = useRef(null);
 
   const notify = () =>
     toast("Login Success!", {
@@ -24,17 +26,19 @@ function Login() {
 
   const handleFrom = (e) => {
     e.preventDefault();
-
-    if (email === "m@m.com" && password === "123") {
-      notify();
-      navigate("/dashboard");
-    } else {
-      console.log("Login failed!!!");
-      return;
-    }
+    // if (email === "m@m.com" && password === "123") {
+    //   notify();
+    //   navigate("/dashboard");
+    // } else {
+    //   console.log("Login failed!!!");
+    //   return;
+    // }
     // send data to backend;
+    el.current = email;
   };
-
+  useEffect(() => {
+    el.current = email;
+  }, [email]);
   return (
     <>
       <div className="content">
@@ -42,6 +46,7 @@ function Login() {
           <div className="card mt-5 card-style">
             <h1 className="text-center">Login </h1>
             <form onSubmit={handleFrom}>
+              <p>{el.current}</p>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   Email address
